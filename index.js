@@ -64,6 +64,11 @@ var mapOptions = {
         
  };
 
+ // Create an image overlay that stretches from Birmingham to Huntsville
+ var imgUrl = 'Thuum.jpg';
+ var imgBounds = [cityCoords.birmingham, cityCoords.huntsville];
+ var overlay = L.imageOverlay(imgUrl, imgBounds);
+
 $(document).ready(
     () => {
         // var mymap = L.map('main-map').setView([51.505, -0.09], 13);
@@ -107,5 +112,14 @@ $(document).ready(
         polyline.addTo(map);
         polygon.addTo(map);
         circle.addTo(map);
+        overlay.addTo(map);
+
+        // Add event handler to the map
+        map.on(
+            "click",
+            (e) => {
+                new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);  
+            }
+        )
     }
 )
