@@ -1,17 +1,23 @@
 let svgTest;
 let myImage = new Image();
+let svgText;
 myImage.src = "testMap.svg";
 
 // Create a map object with a simple set of coordinates
 let map = L.map('main-map', {
-    crs: L.CRS.Simple
+    crs: L.CRS.Simple,
+    renderer: L.svg()
 });
+
+// console.log(map);
 
 // Set the bounds for the map. We will be setting its bounds to the width and height of the provided image.
 let bounds = [[0,0], [myImage.width,myImage.height]];
 
 // Add a layer for the custom map
-let image = L.imageOverlay(myImage.src, bounds).addTo(map);
+let image = L.imageOverlay(myImage.src, bounds, { interactive: true }).addTo(map);
+
+console.log(image);
 
 let myIcon = new L.icon({
     iconUrl: 'leaf-red.png',
@@ -29,7 +35,11 @@ let myIcon = new L.icon({
 
 $(document).ready( () => {
 
-    console.log(myImage);
+    svgText = $("#nopointer-text");
+
+    // console.log(svgText);
+
+    // console.log(myImage);
     
     // svgTest = $("#svg-test");
 
@@ -46,12 +56,12 @@ $(document).ready( () => {
     //     }
     // )
 
-    map.on(
-        "click",
-        (e) => {
-            // new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
-            alert(`This is located at ${e.latlng.lat} and ${e.latlng.lng}`);  
-        }
-    )
+    // map.on(
+    //     "click",
+    //     (e) => {
+    //         // new L.Marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+    //         alert(`This is located at ${e.latlng.lat} and ${e.latlng.lng}`);  
+    //     }
+    // )
 
 });
