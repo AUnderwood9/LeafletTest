@@ -1,5 +1,19 @@
-#main-map { 
+/* #main-map { 
     width: 80em;
     height: 30em;
-    /* background-color: black; */
+} */
+
+#map-main {
+    width: 100%;
+  }
+  
+#map_container {
+    width: 50%;
+    max-width: 530px;
+    float: left;
+}
+
+#some_content {
+    float: left;
+    padding: 2em;
 }
