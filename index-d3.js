@@ -1,5 +1,16 @@
 let svg = null;
 let maproot = null;
+let rectColors = { color1: "green", color2: "red" };
+
+let animateSquare = (objToAnimate) => {
+    let currentObj = d3.select(objToAnimate);
+    let initialColor = rectColors.color1;
+    let fadeToColor = rectColors.color2;
+
+    let currentTransition = () => currentObj.transition().duration(1000);
+    // currentTransition().style("fill", fadeToColor).transition().duration(2000).style("fill", initialColor).on("end", () => {animateSquare(objToAnimate)});
+    currentTransition().style("fill", fadeToColor).transition().duration(1000).style("fill", initialColor).on("end", () => {animateSquare(objToAnimate)});
+}
 
 d3.xml("testMap.svg", (error, xml) => {
     let htmlSVG = document.getElementById("map");
@@ -25,7 +36,24 @@ d3.xml("testMap.svg", (error, xml) => {
             console.log("Stop!!!");
         }else{
             d3.select(this).style("fill", "green");
+            d3.select(this).on("click", () => {
+                console.log("Click");
+            });
+            animateSquare(this);
         }
         
-    })
-})
+    });
+
+    // buildingSquares.selectAll("rect").each(function(){
+        
+
+    //     if(d3.select(this).attr("id") === "rect-big"){
+    //         console.log("Stop!!!");
+    //     }else{
+    //         d3.select(this).on("click", () => {
+    //             console.log("Click");
+    //         })
+    //     }
+        
+    // })
+});
