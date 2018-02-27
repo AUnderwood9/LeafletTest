@@ -1,6 +1,10 @@
 let svg = null;
 let maproot = null;
 let rectColors = { color1: "green", color2: "red" };
+let myTool = d3.select("body").append("div")	
+            .attr("class", "tooltip")				
+            .style("opacity", 0);
+
 
 let animateSquare = (objToAnimate) => {
     let currentObj = d3.select(objToAnimate);
@@ -34,6 +38,20 @@ d3.xml("testMap.svg", (error, xml) => {
         // console.log(d3.select(this).attr("id"));
         if(d3.select(this).attr("id") === "rect-big"){
             console.log("Stop!!!");
+            d3.select(this)
+            .on("mouseover", function(d) {		
+                myTool.transition()		
+                    .duration(200)		
+                    .style("opacity", .9);		
+                myTool.html("stuff"+ "<br/>")	
+                    .style("left", (d3.event.pageX) + "px")		
+                    .style("top", (d3.event.pageY - 28) + "px");	
+                })					
+            .on("mouseout", function(d) {		
+                myTool.transition()		
+                    .duration(500)		
+                    .style("opacity", 0);	
+            });
         }else{
             d3.select(this).style("fill", "green");
             d3.select(this).on("click", () => {
