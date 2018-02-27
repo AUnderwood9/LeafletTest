@@ -28,14 +28,9 @@ d3.xml("testMap.svg", (error, xml) => {
     svg.attr("viewBox", xmlSVG.attr("viewBox"));
 
     let buildingSquares = maproot.selectAll("g.buildings");
-    // console.log(buildingSquares);
+    let buildingSquareText = maproot.select("g#nopointer-text");
     
     buildingSquares.selectAll("rect").each(function(){
-        // console.log(d3.select(this));
-        // for (item in d3.select(this)){
-        //     console.log(item);
-        // }
-        // console.log(d3.select(this).attr("id"));
         if(d3.select(this).attr("id") === "rect-big"){
             console.log("Stop!!!");
             d3.select(this)
@@ -43,7 +38,7 @@ d3.xml("testMap.svg", (error, xml) => {
                 myTool.transition()		
                     .duration(200)		
                     .style("opacity", .9);		
-                myTool.html("stuff"+ "<br/>")	
+                myTool.html(`${buildingSquareText.select("text").text()} <br/>`)	
                     .style("left", (d3.event.pageX) + "px")		
                     .style("top", (d3.event.pageY - 28) + "px");	
                 })					
@@ -52,6 +47,7 @@ d3.xml("testMap.svg", (error, xml) => {
                     .duration(500)		
                     .style("opacity", 0);	
             });
+            // console.log(buildingSquareText.select("text").text());
         }else{
             d3.select(this).style("fill", "green");
             d3.select(this).on("click", () => {
@@ -61,17 +57,4 @@ d3.xml("testMap.svg", (error, xml) => {
         }
         
     });
-
-    // buildingSquares.selectAll("rect").each(function(){
-        
-
-    //     if(d3.select(this).attr("id") === "rect-big"){
-    //         console.log("Stop!!!");
-    //     }else{
-    //         d3.select(this).on("click", () => {
-    //             console.log("Click");
-    //         })
-    //     }
-        
-    // })
 });
