@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import mySvg from "../../resources/images/testMap.svg"
 import Map from "./views/Map/Map"
+import mainStyle from "./index.scss"
 
 function App(props){
     console.log(mySvg);

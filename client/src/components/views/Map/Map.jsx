@@ -3,8 +3,9 @@ import React from "react";
 function Map(props) {
     return (
         // <h1>Map here!</h1>
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px">
-            height="600px" viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml: space="preserve">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px"
+                height="600px" viewBox="0 0 800 600" enableBackground="new 0 0 800 600" xmlSpace="preserve">
+            {/* height="600px" viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml: space="preserve"> */}
             <g id="maproot">
                 <g id="Base">
                     <polyline fill="#D2D4D6" points="100.21,125.25 677.68,125.25 677.68,431.59 242.46,431.59 	" />

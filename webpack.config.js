@@ -14,7 +14,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['env', 'react']
+                        presets: ['env', 'react'],
+                        plugins: ['transform-class-properties']
                     }
                 }
             },
@@ -35,7 +36,7 @@ module.exports = {
                 })
             },
             {
-                test: /\.scss$/,
+                test: /\.module.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -53,11 +54,30 @@ module.exports = {
                 })
             },
             {
+                test: /^((?!\.module).)*scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: true,
+                                sourceMap: true,
+                                importLoaders: 2,
+                                localIdentName: '[local]'
+                            }
+                        },
+                        'sass-loader'
+                    ]
+                })
+            },
+            {
                 exclude: [
                     /\.html$/,
                     /\.(js|jsx)$/,
                     /\.css$/,
-                    /\.scss$/
+                    /\.scss$/,
+                    /\.module.scss$/
                 ],
                 loader: require.resolve('file-loader'),
                 options: {
